@@ -28,11 +28,11 @@ jobs:
           cache: "npm"
           cache-dependency-path: "swcnt-mobile-lite/package-lock.json"
 
-      - name: Setup Java 21
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: "21"
+          java-version: "17"
           cache: gradle
 
       - name: Setup Android SDK
@@ -47,6 +47,12 @@ jobs:
         working-directory: swcnt-mobile-lite
         run: npm ci
 
+      - name: Tool Versions
+        run: |
+          node -v
+          npm -v
+          java -version
+
       - name: Build Debug APK
         working-directory: swcnt-mobile-lite
         run: npm run android:build:debug:ci
@@ -56,6 +62,15 @@ jobs:
         with:
           name: swcnt-lite-debug-apk
           path: swcnt-mobile-lite/android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload Build Reports (On Failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-build-reports
+          path: |
+            swcnt-mobile-lite/android/build/reports
+            swcnt-mobile-lite/android/app/build/reports
 
       - name: Attach APK To GitHub Release
         if: startsWith(github.ref, 'refs/tags/')

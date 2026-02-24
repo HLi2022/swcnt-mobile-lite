@@ -9,7 +9,7 @@
     "cap:sync": "npm run build:web && npx cap sync",
     "android:add": "npx cap add android",
     "ios:add": "npx cap add ios",
-    "android:build:debug:ci": "npm run build:web && npx cap copy android && cd android && ./gradlew assembleDebug",
+    "android:build:debug:ci": "npm run build:web && npx cap copy android && cd android && chmod +x gradlew && ./gradlew --no-daemon assembleDebug --stacktrace",
     "android:build:debug": "npm run cap:sync && cd android && ./gradlew assembleDebug",
     "android:open": "npx cap open android",
     "ios:open": "npx cap open ios"
