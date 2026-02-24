@@ -141,3 +141,57 @@ npm run ios:open
 ```
 
 Then build/run in Xcode to your iPhone (or archive for distribution).
+
+## GitHub Sharing (Web + Android + iOS)
+
+This repo now includes GitHub Actions workflows:
+
+- `.github/workflows/pages.yml`:
+  - Builds web assets and deploys to GitHub Pages
+- `.github/workflows/android-apk.yml`:
+  - Builds Android debug APK
+  - Uploads APK as workflow artifact on `main` pushes
+  - Auto-attaches APK to GitHub Release when pushing tags like `v1.0.0`
+
+### 1. Push To GitHub
+
+From repo root:
+
+```bash
+cd "/Users/hanli/codex project/SWCNT app"
+git add .
+git commit -m "Prepare GitHub deployment workflows"
+git remote add origin <your-github-repo-url>
+git push -u origin main
+```
+
+### 2. Web Version (GitHub Pages)
+
+In GitHub repo settings:
+
+1. Open `Settings` -> `Pages`
+2. Set `Build and deployment` source to `GitHub Actions`
+3. After workflow finishes, web app URL will appear in Actions/Pages output
+
+### 3. Android Direct Install
+
+Option A (every push):
+
+- Open `Actions` -> `Build Android APK`
+- Download artifact `swcnt-lite-debug-apk`
+
+Option B (release tag):
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+Then APK is attached to GitHub Release `v1.0.0`.
+
+### 4. iOS Sharing
+
+GitHub can share the iOS project source (`ios/`), but iOS app install still needs Apple signing.
+
+- Free Apple ID: install to your own device via Xcode (temporary dev build)
+- Paid Apple Developer: TestFlight / App Store distribution

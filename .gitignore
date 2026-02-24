@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Node / npm
+swcnt-mobile-lite/node_modules/
+swcnt-mobile-lite/npm-debug.log*
+swcnt-mobile-lite/.npm/
+
+# Generated web bundle
+swcnt-mobile-lite/www/
+
+# Android build artifacts
+swcnt-mobile-lite/android/.gradle/
+swcnt-mobile-lite/android/local.properties
+swcnt-mobile-lite/android/app/build/
+swcnt-mobile-lite/android/build/
+swcnt-mobile-lite/android/captures/
+
+# iOS build artifacts
+swcnt-mobile-lite/ios/DerivedData/
+swcnt-mobile-lite/ios/App/build/
+swcnt-mobile-lite/ios/App/App/public/
+swcnt-mobile-lite/ios/.symlinks/
+swcnt-mobile-lite/ios/Pods/
+
+# Generic logs
+*.log
