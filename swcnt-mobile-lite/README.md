@@ -1,0 +1,143 @@
+# SWCNT Lite Spectra (Mobile PWA)
+
+This is a lightweight mobile-first SWCNT app for:
+
+- Input `n` and `m` directly and generate pseudo-Voigt absorption spectra
+- Overlay multiple species to compare peak positions
+- View basic tube properties from data files (diameter, chiral angle, RBM, transitions)
+- Exclude SDS% from displayed property table
+
+Data source files:
+
+- `data/swcnt_info_semiconducting.csv`
+- `data/swcnt_info_metallic.csv`
+
+## Run Locally
+
+From this folder:
+
+```bash
+cd "/Users/hanli/codex project/SWCNT app/swcnt-mobile-lite"
+python3 -m http.server 8765
+```
+
+Then open:
+
+- `http://localhost:8765` on desktop, or
+- `http://<your-lan-ip>:8765` on phone in same network
+
+If you start server from parent folder instead:
+
+```bash
+cd "/Users/hanli/codex project/SWCNT app"
+python3 -m http.server 8765
+```
+
+Then URL must be:
+
+- `http://localhost:8765/swcnt-mobile-lite/`
+
+## Troubleshooting (Mac)
+
+- No reaction in browser:
+  - Check you opened `http://localhost:8765` (or `/swcnt-mobile-lite/` if started from parent).
+  - Do not double-click `index.html` directly (`file://` mode blocks data loading).
+- Port in use:
+  - Change port: `python3 -m http.server 8877`
+- Still blank:
+  - Hard refresh (`Cmd+Shift+R`) or clear browser cache/site data once.
+  - If installed as PWA before, remove old home-screen app and re-add it once after refresh.
+
+## Install On Phone
+
+Android (Chrome):
+
+1. Open the app URL.
+2. Tap browser menu.
+3. Tap `Install app` or `Add to Home Screen`.
+
+iPhone/iPad (Safari):
+
+1. Open the app URL.
+2. Tap Share button.
+3. Tap `Add to Home Screen`.
+
+## Notes
+
+- Spectrum shape uses pseudo-Voigt approximation for fast mobile rendering.
+- Metallic curves use `M11-`, `M11+`, and `M11` (if present).
+- Semiconducting curves use `S11` and `S22`.
+- Service worker enables offline reuse after first load.
+
+## Optional Native Packaging (Android/iOS Store Path)
+
+If you later want app-store style binaries:
+
+1. Wrap this web app with Capacitor.
+2. Build Android/iOS projects from the same web assets.
+3. Use Android Studio / Xcode for signing and publishing.
+
+This keeps one codebase for both platforms.
+
+## Local Native App (Done)
+
+This project is now wrapped by Capacitor and has native projects:
+
+- `android/`
+- `ios/`
+
+Config file:
+
+- `capacitor.config.json` with:
+  - appId: `com.hanli.swcntlite`
+  - appName: `SWCNT Lite Spectra`
+  - webDir: `www`
+
+### Build Web Assets Into Native Shell
+
+From `swcnt-mobile-lite`:
+
+```bash
+npm run cap:sync
+```
+
+This rebuilds web files into `www/` and copies them into both native projects.
+
+### Android (Local App)
+
+Prerequisites:
+
+- Java JDK 21+
+- Android Studio
+- Android SDK installed
+
+Commands:
+
+```bash
+npm run android:open
+```
+
+or build debug APK from CLI:
+
+```bash
+npm run android:build:debug
+```
+
+APK output (debug):
+
+- `android/app/build/outputs/apk/debug/app-debug.apk`
+
+### iOS (Local App)
+
+Prerequisites:
+
+- Full Xcode app (not only Command Line Tools)
+- CocoaPods (usually managed by Xcode/Capacitor workflow)
+
+Command:
+
+```bash
+npm run ios:open
+```
+
+Then build/run in Xcode to your iPhone (or archive for distribution).

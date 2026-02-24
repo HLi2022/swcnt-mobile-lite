@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#17324a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>SWCNT Lite Spectra</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>SWCNT Lite Spectra</h1>
+    <p>Input (n,m), overlay pseudo-Voigt absorption spectra, and check tube properties.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel controls">
+      <h2>Chirality Input</h2>
+      <div class="input-row nm-input-row">
+        <label for="nInput">n</label>
+        <input id="nInput" type="number" min="0" max="80" step="1" placeholder="e.g. 6" />
+        <label for="mInput">m</label>
+        <input id="mInput" type="number" min="0" max="80" step="1" placeholder="e.g. 5" />
+        <button id="addBtn" type="button">Add (n,m)</button>
+      </div>
+      <p id="statusMessage" class="status"></p>
+
+      <h2>Global Shape</h2>
+      <div class="control-grid">
+        <label for="sigmaSlider">Sigma</label>
+        <input id="sigmaSlider" type="range" min="1" max="30" step="0.5" value="8" />
+        <output id="sigmaValue">8.0</output>
+
+        <label for="gammaSlider">Gamma</label>
+        <input id="gammaSlider" type="range" min="1" max="30" step="0.5" value="6" />
+        <output id="gammaValue">6.0</output>
+
+        <label for="minWavelength">Min Wavelength (nm)</label>
+        <input id="minWavelength" type="number" min="250" max="3200" step="10" value="350" />
+        <span class="spacer"></span>
+
+        <label for="maxWavelength">Max Wavelength (nm)</label>
+        <input id="maxWavelength" type="number" min="300" max="3500" step="10" value="2200" />
+        <span class="spacer"></span>
+
+        <label for="stepSize">Grid Step (nm)</label>
+        <input id="stepSize" type="number" min="0.2" max="10" step="0.1" value="1.0" />
+        <span class="spacer"></span>
+
+        <label for="showTotalToggle">Show Total Curve</label>
+        <input id="showTotalToggle" type="checkbox" checked />
+        <span class="spacer"></span>
+      </div>
+
+      <div class="action-row">
+        <button id="clearBtn" type="button" class="ghost">Clear All</button>
+      </div>
+
+      <h2>Active Species</h2>
+      <div id="selectedSpecies" class="species-list"></div>
+    </section>
+
+    <section class="panel chart-panel">
+      <h2>Overlay Plot</h2>
+      <div id="plotWrap" class="plot-wrap">
+        <svg id="plotSvg" aria-label="SWCNT spectra plot"></svg>
+      </div>
+      <div id="legend" class="legend"></div>
+    </section>
+  </main>
+
+  <section class="panel">
+    <h2>Basic Properties (No SDS%)</h2>
+    <div class="table-wrap">
+      <table id="propertyTable">
+        <thead>
+          <tr>
+            <th>Chirality</th>
+            <th>Type</th>
+            <th>Diameter (nm)</th>
+            <th>Chiral Angle (deg)</th>
+            <th>RBM</th>
+            <th>S11 (nm)</th>
+            <th>S22 (nm)</th>
+            <th>M11- (nm)</th>
+            <th>M11+ (nm)</th>
+            <th>M11 (nm)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="app-footer">
+    <p>Install tip: open in mobile browser and use "Add to Home Screen".</p>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

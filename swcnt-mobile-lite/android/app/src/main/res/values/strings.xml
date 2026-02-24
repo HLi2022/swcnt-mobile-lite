@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SWCNT Lite Spectra</string>
+    <string name="title_activity_main">SWCNT Lite Spectra</string>
+    <string name="package_name">com.hanli.swcntlite</string>
+    <string name="custom_url_scheme">com.hanli.swcntlite</string>
+</resources>

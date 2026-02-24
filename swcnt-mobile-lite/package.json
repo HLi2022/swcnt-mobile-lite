@@ -1,0 +1,25 @@
+{
+  "name": "swcnt-mobile-lite",
+  "version": "1.0.0",
+  "description": "SWCNT lightweight mobile app packaged with Capacitor",
+  "main": "app.js",
+  "scripts": {
+    "build:web": "rm -rf www && mkdir -p www && cp index.html styles.css app.js manifest.webmanifest sw.js www/ && cp -R assets www/assets && cp -R data www/data",
+    "cap:copy": "npm run build:web && npx cap copy",
+    "cap:sync": "npm run build:web && npx cap sync",
+    "android:add": "npx cap add android",
+    "ios:add": "npx cap add ios",
+    "android:build:debug": "npm run cap:sync && cd android && ./gradlew assembleDebug",
+    "android:open": "npx cap open android",
+    "ios:open": "npx cap open ios"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^8.1.0",
+    "@capacitor/cli": "^8.1.0",
+    "@capacitor/core": "^8.1.0",
+    "@capacitor/ios": "^8.1.0"
+  }
+}
