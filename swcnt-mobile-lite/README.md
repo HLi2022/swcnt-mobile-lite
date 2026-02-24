@@ -175,19 +175,37 @@ In GitHub repo settings:
 
 ### 3. Android Direct Install
 
-Option A (every push):
+#### Option A: Download APK From Actions (every push to `main`)
 
-- Open `Actions` -> `Build Android APK`
-- Download artifact `swcnt-lite-debug-apk`
+1. Open repo page: `https://github.com/<your-user>/<your-repo>`
+2. Click `Actions`
+3. Open workflow run: `Build Android APK`
+4. Wait until it is green (`Success`)
+5. Scroll to `Artifacts`, download `swcnt-lite-debug-apk`
+6. Unzip it, you will get: `app-debug.apk`
 
-Option B (release tag):
+If you cannot find the file:
+
+- Make sure you opened the workflow run details page (not only the workflow list page)
+- Check the run status is `Success` (failed runs do not provide APK artifact)
+- Wait 1-3 minutes after success for artifact panel to appear
+
+#### Option B: APK In GitHub Releases (better for sharing link)
+
+From local repo root:
 
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
-Then APK is attached to GitHub Release `v1.0.0`.
+Then:
+
+1. Open `Releases` in your GitHub repo
+2. Open release `v1.0.0`
+3. Download asset `app-debug.apk`
+
+This path is better for sharing because users can download from the release page directly.
 
 ### 4. iOS Sharing
 
@@ -195,3 +213,12 @@ GitHub can share the iOS project source (`ios/`), but iOS app install still need
 
 - Free Apple ID: install to your own device via Xcode (temporary dev build)
 - Paid Apple Developer: TestFlight / App Store distribution
+
+## Quick Troubleshooting (GitHub)
+
+- `remote rejected ... without workflow scope` when `git push`:
+  - Your PAT is missing workflow permission
+  - Create new PAT with at least `repo` and `workflow`
+- `Repository not found`:
+  - Check `git remote -v` URL and repo name
+  - Confirm the repo exists and your account has access
