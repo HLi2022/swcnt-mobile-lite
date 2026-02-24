@@ -1,5 +1,10 @@
 # SWCNT Lite Installation Guide
 
+## About
+
+SWCNT Lite is a lightweight app for quick single-walled carbon nanotube (SWCNT) checks.  
+It lets you input chirality `(n,m)`, view fitted pseudo-Voigt absorption spectra, overlay multiple chiralities, and read core tube properties like diameter, chiral angle, RBM, and optical transitions.
+
 ## Web
 
 Open:
