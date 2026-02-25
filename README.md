@@ -7,7 +7,7 @@ It lets you input chirality `(n,m)`, view fitted pseudo-Voigt absorption spectra
 
 ## Data Source Citation
 
-Semiconducting SWCNT Data (SDS):
+Semiconducting SWCNT Data:
 
 Dependence of Optical Transition Energies on Structure for Single-Walled Carbon Nanotubes in Aqueous Suspension: An Empirical Kataura Plot  
 R. B. Weisman & S. M. Bachilo. Nano Lett., 2003. DOI: 10.1021/nl034428i
